@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServices", "Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditTrailWebApi", "AuditTrailWebApi\AuditTrailWebApi.csproj", "{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD743537-8D1D-4E2C-9C88-6F6466F5D1C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD743537-8D1D-4E2C-9C88-6F6466F5D1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD743537-8D1D-4E2C-9C88-6F6466F5D1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD743537-8D1D-4E2C-9C88-6F6466F5D1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD743537-8D1D-4E2C-9C88-6F6466F5D1C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

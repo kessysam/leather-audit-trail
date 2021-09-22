@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  audittrailwebapi:
+    image: ${DOCKER_REGISTRY-}audittrailwebapi
+    build:
+      context: .
+      dockerfile: AuditTrailWebApi/Dockerfile
