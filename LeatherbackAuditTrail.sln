@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1DA52101-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D67578DA-5752-4EE4-BD96-93547E1654A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{2BCF39DF-F98E-4B95-88D5-F87DC612DDE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{2BCF39DF-F98E-4B95-88D5-F87DC612DDE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{495E0329-2028-417A-B6A1-CADFCBF1CD1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{495E0329-2028-417A-B6A1-CADFCBF1CD1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingBus", "MessagingBus\MessagingBus.csproj", "{010F8ABA-5CD3-4A71-A815-54746A61E9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagingBus", "MessagingBus\MessagingBus.csproj", "{010F8ABA-5CD3-4A71-A815-54746A61E9E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{73BECF89-8C02-43B3-9D72-FC7A6184C1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationServices", "ApplicationServices\ApplicationServices.csproj", "{95144FBF-1465-4C40-8640-188AF26D5365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServices", "ApplicationServices\ApplicationServices.csproj", "{95144FBF-1465-4C40-8640-188AF26D5365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditTrailWebApi", "AuditTrailWebApi\AuditTrailWebApi.csproj", "{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditTrailWebApi", "AuditTrailWebApi\AuditTrailWebApi.csproj", "{26ADD5F3-7B14-4BF8-9D63-D39FBDAEC3B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
