@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leatherbackaudittrail-dev
+  
+spec:
+  selector:
+    matchLabels:
+      app: leatherbackaudittrail-pod
+  template:
+    metadata:
+      labels:
+        app: leatherbackaudittrail-pod
+    spec:
+      containers:
+      - name: leatherbackaudittrail-container
+        image: rexelpay.azurecr.io/leatherbackaudittrail-dev:v1
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "300m"
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: leatherbackaudittrail-service
+spec:
+  selector:
+    app: leatherbackaudittrail-pod
+  ports:
+  - port: 8080
+    targetPort: 80
+  type: LoadBalancer
