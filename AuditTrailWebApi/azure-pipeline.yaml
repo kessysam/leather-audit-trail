@@ -2,6 +2,8 @@ trigger:
   branches:
     include:
     - Development
+    - Staging
+    - main
 
 variables:
   # Container registry service connection established during pipeline creation
