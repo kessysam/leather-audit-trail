@@ -30,24 +30,7 @@ namespace AuditTrailWebApi
 				{
 					var services = scope.ServiceProvider;
 
-					try
-					{
-						Log.Information(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
-						var context = services.GetRequiredService<AuditTrailDbContext>();
-
-						if (context.Database.IsSqlServer())
-						{
-							await context.Database.MigrateAsync();
-
-							Log.Information("Database migration successful");
-						}
-					}
-					catch (Exception ex)
-					{
-						Log.Information("Error Migrating database: " + ex +
-										"\n Message: " + ex.Message + "\n Inner Exception: " + ex.InnerException);
-						throw;
-					}
+					
 				}
 
 				await host.RunAsync();
@@ -62,8 +45,7 @@ namespace AuditTrailWebApi
 			{
 				Log.Information("Closing up");
 				Log.CloseAndFlush();
-
-			}
+            }
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

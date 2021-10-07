@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using ApplicationServices.Interfaces;
 using ApplicationServices.Shared.Constants;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,5 +28,25 @@ namespace Persistence
 
 			return services;
 		}
-	}
+
+        public static async Task<AuditTrailService> InitializeCosmosClientInstanceAsync(this IServiceCollection services, IConfiguration configuration)
+        {
+            var databaseName = configuration["DatabaseName"];
+            var containerName = configuration["ContainerName"];
+            var account = configuration["Account"];
+            var key = configuration["Key"];
+            var options = new CosmosClientOptions()
+            {
+                SerializerOptions = new CosmosSerializationOptions()
+                {
+                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                }
+            };
+            var client = new CosmosClient(account, key,options);
+            var database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
+            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/applicationName");
+            var cosmosDbService = new AuditTrailService(client, databaseName, containerName);
+            return cosmosDbService;
+        }
+    }
 }

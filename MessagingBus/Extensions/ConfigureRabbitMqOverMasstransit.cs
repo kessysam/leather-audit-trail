@@ -29,7 +29,13 @@ namespace MessagingBus.Extensions
                         h.Password(password);
                     });
 
-                    cfg.ReceiveEndpoint("AuditTrailQueue", e =>
+                    //cfg.ReceiveEndpoint("AuditTrailMessageQueue", consumer =>
+                    //{
+                    //    consumer.Durable = true;
+                    //    consumer.ConfigureConsumer<AuditTrailConsumer>(provider);
+                    //});
+
+                    cfg.ReceiveEndpoint("AuditTrailMessageQueue", e =>
                     {
                         e.Durable = true;
                         e.PrefetchCount = 16;
@@ -41,7 +47,7 @@ namespace MessagingBus.Extensions
                             cb.ActiveThreshold = 10;
                             cb.ResetInterval = TimeSpan.FromMinutes(3);
                         });
-                        e.Consumer<AuditTrailConsumer>(provider);
+                        e.ConfigureConsumer<AuditTrailConsumer>(provider);
                         e.DiscardSkippedMessages();
                         e.DiscardFaultedMessages();
                     });

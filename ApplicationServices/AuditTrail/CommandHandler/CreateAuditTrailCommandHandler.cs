@@ -11,30 +11,22 @@ namespace ApplicationServices.AuditTrail.Command
     {
         private readonly IAuditTrailDbContext _context;
         private readonly ILogger<CreateAuditTrailCommandHandler> _logger;
+        private readonly IAuditTrailService _auditTrailService;
 
         public CreateAuditTrailCommandHandler(IAuditTrailDbContext context, 
-            ILogger<CreateAuditTrailCommandHandler> logger)
+            ILogger<CreateAuditTrailCommandHandler> logger, IAuditTrailService auditTrailService)
         {
             _context = context;
             _logger = logger;
+            _auditTrailService = auditTrailService;
         }
         public async Task<Result> Handle(CreateAuditTrailCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Saving record for");
-            switch (request.ApplicationName)
+            foreach (var requestServiceAuditTrail in request.ServiceAuditTrails)
             {
-                //case "Onboarding":
-                //    break;
-                //case "Transaction":
-                //    var auditTrail = new Domain.TransactionAuditTrail();
-                //    {
-
-                //    };
-                //    _context.TransactionAuditTrails.Add(auditTrail);
-                    //break;
+                await _auditTrailService.AddAsync(requestServiceAuditTrail);
             }
-
-            //await _context.SaveChangesAsync(cancellationToken);
             return Result.Ok();
         }
     }

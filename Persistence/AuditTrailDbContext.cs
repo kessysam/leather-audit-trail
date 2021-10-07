@@ -17,8 +17,5 @@ namespace Persistence
         }
 
         public DbSet<ServiceAuditTrail> ServiceAuditTrails { get; set; }
-        //public DbSet<TransactionAuditTrail> TransactionAuditTrails { get; set; }
-        //public DbSet<PaymentGatewayAuditTrail> PaymentGatewayAuditTrails { get; set; }
-        //public DbSet<PermissionAuditTrail> PermissionAuditTrails { get; set; }
     }
 }
