@@ -55,7 +55,7 @@ namespace MessagingBus.Consumers
                 var result = await _mediator.Send(auditTrailCommand);
                 if (result.IsSuccess)
                 {
-
+                    _logger.LogInformation($"");
                 }
             }
             catch (Exception exception)
