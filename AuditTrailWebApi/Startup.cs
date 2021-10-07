@@ -1,4 +1,5 @@
 using ApplicationServices;
+using ApplicationServices.Interfaces;
 using AuditTrailWebApi.Middleware;
 using MessagingBus.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -43,10 +44,13 @@ namespace AuditTrailWebApi
                 .AddMessagingBus(WebHostEnvironment, Configuration)
                 .AddApplicationServices(Configuration);
 
+            var result = services.InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult();
+            services.AddSingleton<IAuditTrailService>(result);
+
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuditTrail Web Api", Version = "v1" });
-            });
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuditTrail Web Api", Version = "v1" });
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
