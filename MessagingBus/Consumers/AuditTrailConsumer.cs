@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ApplicationServices.AuditTrail.Command;
 using Domain;
@@ -29,12 +30,8 @@ namespace MessagingBus.Consumers
             try
             {
                 //send to the command processor
-                var auditTrailMessages =
-                    JsonConvert.DeserializeObject<List<AuditTrailMessage>>(context.Message.Message);
-                var serviceAuditTrails = new List<ServiceAuditTrail>();
-                foreach (var auditTrailMessage in auditTrailMessages)
-                {
-                    serviceAuditTrails.Add(new ServiceAuditTrail
+                var auditTrailMessages = JsonConvert.DeserializeObject<List<AuditTrailMessage>>(context.Message.Message);
+                var serviceAuditTrails = auditTrailMessages.Select(auditTrailMessage => new ServiceAuditTrail
                     {
                         ApplicationName = auditTrailMessage.ApplicationName,
                         AuditType = auditTrailMessage.Type,
@@ -45,9 +42,9 @@ namespace MessagingBus.Consumers
                         TableName = auditTrailMessage.TableName,
                         OldValues = auditTrailMessage.OldValues,
                         DateTime = auditTrailMessage.DateTime,
-                        id = Guid.NewGuid().ToString()
-                    });
-                }
+                        Id = Guid.NewGuid().ToString()
+                    })
+                    .ToList();
                 var auditTrailCommand = new CreateAuditTrailCommand
                 {
                     ServiceAuditTrails = serviceAuditTrails
@@ -55,7 +52,7 @@ namespace MessagingBus.Consumers
                 var result = await _mediator.Send(auditTrailCommand);
                 if (result.IsSuccess)
                 {
-                    _logger.LogInformation($"");
+                    _logger.LogInformation($"Audit trail not saved...Details: {JsonConvert.SerializeObject(serviceAuditTrails, Formatting.None)}");
                 }
             }
             catch (Exception exception)

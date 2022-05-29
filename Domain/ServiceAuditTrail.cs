@@ -3,17 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace Domain
 {
-    public enum AuditType
-    {
-        None = 0,
-        Create = 1,
-        Update = 2,
-        Delete = 3
-    }
     public class ServiceAuditTrail
     {
         [JsonPropertyName("id")]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("userId")]
         public Guid? UserId { get; set; }
