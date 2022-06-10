@@ -31,7 +31,7 @@ namespace Persistence
                 var response = await _container.ReadItemAsync<ServiceAuditTrail>(applicationName, new PartitionKey(applicationName));
                 return response.Resource;
             }
-            catch (CosmosException) //For handling item not found and other exceptions
+            catch (CosmosException ex) //For handling item not found and other exceptions
             {
                 return null;
             }
